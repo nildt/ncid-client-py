@@ -61,7 +61,6 @@ class daemon:
 
 	def start(self):
 		"""Start the daemon."""
-
 		# Check for a pidfile to see if the daemon already runs
 		try:
 			with open(self.pidfile,'r') as pf:
@@ -75,7 +74,6 @@ class daemon:
 					"Daemon already running?\n"
 			sys.stderr.write(message.format(self.pidfile))
 			sys.exit(1)
-		
 		# Start the daemon
 		self.daemonize()
 		self.run()

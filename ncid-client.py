@@ -83,32 +83,29 @@ class NcidClientFactory(ClientFactory):
 		notification = Notify()
 		notification.showNotification("Connection lost",1000)
 		reactor.stop()
-		
-		
-		
+
 class MyDaemon(daemon):
 #   Overrides run function in daemon
-    def run(self):
-        print '[+] Initializing...'
-#        notification = Notify()
-#        notification.showNotification("Initializing",500) # Takes too long to close...
-        factory = NcidClientFactory()
-        reactor.connectTCP(SERVER_IP, SERVER_PORT, factory)
-        print '[+] Started!'
+	def run(self):
+		print '[+] Initializing...'
+		notification = Notify()
+		notification.showNotification("Initializing",500) # Takes too long to close...
+		factory = NcidClientFactory()
+		reactor.connectTCP(SERVER_IP, SERVER_PORT, factory)
+		print '[+] Started!'
 #       notification.showNotification("Started",500) Takes too long to close...
-        reactor.run()   
-        print '[+] Stopped!'
+		reactor.run()   
+		print '[+] Stopped!'
 #       notification.showNotification("Stopped",500) Same here :D
 
-	
 if __name__ == '__main__':
 
     daemon = MyDaemon('/tmp/CallAlert.pid')
     if len(sys.argv) == 2:
                 if 'start' == sys.argv[1]:
+                    daemon.start()
 #                    if os.path.isfile('/tmp/CallAlert.pid'):
 #                        os.remove('/tmp/CallAlert.pid')
-                        daemon.start()
                 elif 'stop' == sys.argv[1]:
                         daemon.stop()
                 elif 'restart' == sys.argv[1]:
