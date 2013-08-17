@@ -2,12 +2,13 @@
 
 ## General 
 It should show the CallerId of an incoming call 
+Runs as Daemon in the background
 
 ## How
 Just start it 
 
 ## Intention
-* Fast notification of call
+* Notification of an incoming call...
 
 ## To do
 *	A lot :D
