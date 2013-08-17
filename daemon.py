@@ -114,10 +114,25 @@ class daemon:
 		"""Restart the daemon."""
 		self.stop()
 		self.start()
+		
+	def status(self):
+		try:
+			with open(self.pidfile,'r') as pf:
+				pid = int(pf.read().strip())
+		except IOError:
+			pid = None
+
+		if not pid:
+			message = "pidfile {0} does not exist. " + \
+				"Daemon not running?\n"
+			sys.stderr.write(message.format(self.pidfile))
+			return # not an error in a restart
+
+		else:
+			print "Running with PID:	" + str(pid)
 
 	def run(self):
 		"""You should override this method when you subclass Daemon.
 		
 		It will be called after the process has been daemonized by 
 		start() or restart()."""
-
