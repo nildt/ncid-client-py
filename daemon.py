@@ -106,8 +106,11 @@ class daemon:
 			if e.find("No such process") > 0:
 				if os.path.exists(self.pidfile):
 					os.remove(self.pidfile)
+				# Just in case... :D
+				if os.path.isfile('/tmp/CallAlert.pid'):
+					os.remove('/tmp/CallAlert.pid')
 			else:
-				print (str(err.args))
+#				print (str(err.args))
 				sys.exit(1)
 
 	def restart(self):

@@ -106,8 +106,8 @@ if __name__ == '__main__':
     daemon = MyDaemon('/tmp/CallAlert.pid')
     if len(sys.argv) == 2:
                 if 'start' == sys.argv[1]:
-                        if os.path.isfile('/tmp/CallAlert.pid'):
-                            os.remove('/tmp/CallAlert.pid')
+#                    if os.path.isfile('/tmp/CallAlert.pid'):
+#                        os.remove('/tmp/CallAlert.pid')
                         daemon.start()
                 elif 'stop' == sys.argv[1]:
                         daemon.stop()
