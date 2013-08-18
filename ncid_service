@@ -7,6 +7,7 @@ export DISPLAY
 
 case "$1" in
 'start')
+xhost + localhost > /dev/null
 sudo python /PATH_TO_SCRIPT/ncid-client-py/ncid-client.py start
 ;;
 
@@ -14,9 +15,14 @@ sudo python /PATH_TO_SCRIPT/ncid-client-py/ncid-client.py start
 sudo python /PATH_TO_SCRIPT/ncid-client-py/ncid-client.py stop
 ;;
 
+'status')
+sudo python /PATH_TO_SCRIPT/ncid-client-py/ncid-client.py status
+;;
+
 'restart')
 sudo python /PATH_TO_SCRIPT/ncid-client-py/ncid-client.py restart
 ;;
+
 
 esac
 
