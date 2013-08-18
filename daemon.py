@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 # Uses the daemon implementation from http://www.jejik.com/articles/2007/02/a_simple_unix_linux_daemon_in_python/
 
 """Generic linux daemon base class for python 3.x."""
@@ -92,6 +93,13 @@ class daemon:
             message = 'pidfile {0} already exist. ' \
                 + 'Daemon already running?\n'
             sys.stderr.write(message.format(self.pidfile))
+            try:
+                os.kill(pid, 0)
+            except OSError:
+                print "Because Task doesn't exist, the file will be deleted."
+                if os.path.exists(self.pidfile):
+                    os.remove(self.pidfile)
+
             sys.exit(1)
 
                 # Start the daemon

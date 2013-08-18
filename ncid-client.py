@@ -121,6 +121,9 @@ class MyDaemon(daemon):
 #       notification.showNotification("Stopped",500) Same here :D
 
 if __name__ == '__main__':
+    if not 'SUDO_UID' in os.environ.keys():
+        print 'Please run with Rootpermissions!'
+        sys.exit(1)
 
     daemon = MyDaemon('/tmp/CallAlert.pid')
     if len(sys.argv) == 2:
