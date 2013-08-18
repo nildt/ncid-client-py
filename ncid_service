@@ -1,6 +1,7 @@
 # chkconfig: 3 99 1
 # description: CallAlert
 # Just put this file into /etc/init.d/
+# sudo update-rc.d ncid defaults 98 02
 
 DISPLAY=":0.0"
 export DISPLAY
