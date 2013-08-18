@@ -1,0 +1,23 @@
+# chkconfig: 3 99 1
+# description: CallAlert
+# Just put this file into /etc/init.d/
+
+DISPLAY=":0.0"
+export DISPLAY
+
+case "$1" in
+'start')
+sudo python /PATH_TO_SCRIPT/ncid-client-py/ncid-client.py start
+;;
+
+'stop')
+sudo python /PATH_TO_SCRIPT/ncid-client-py/ncid-client.py stop
+;;
+
+'restart')
+sudo python /PATH_TO_SCRIPT/ncid-client-py/ncid-client.py restart
+;;
+
+esac
+
+
