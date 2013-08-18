@@ -28,33 +28,33 @@ class daemon:
             pid = os.fork()
             if pid > 0:
 
-                                # exit first parent
+# exit first parent
 
                 sys.exit(0)
         except OSError, err:
             sys.stderr.write('fork #1 failed: {0}\n'.format(err))
             sys.exit(1)
 
-                # decouple from parent environment
+# decouple from parent environment
 
         os.chdir('/')
         os.setsid()
         os.umask(0)
 
-                # do second fork
+# do second fork
 
         try:
             pid = os.fork()
             if pid > 0:
 
-                                # exit from second parent
+# exit from second parent
 
                 sys.exit(0)
         except OSError, err:
             sys.stderr.write('fork #2 failed: {0}\n'.format(err))
             sys.exit(1)
 
-                # redirect standard file descriptors
+# redirect standard file descriptors
 
         sys.stdout.flush()
         sys.stderr.flush()
@@ -66,7 +66,7 @@ class daemon:
         os.dup2(so.fileno(), sys.stdout.fileno())
         os.dup2(se.fileno(), sys.stderr.fileno())
 
-                # write pidfile
+# write pidfile
 
         atexit.register(self.delpid)
 
@@ -80,7 +80,7 @@ class daemon:
     def start(self):
         """Start the daemon."""
 
-                # Check for a pidfile to see if the daemon already runs
+# Check for a pidfile to see if the daemon already runs
 
         try:
             with open(self.pidfile, 'r') as pf:
@@ -102,7 +102,7 @@ class daemon:
 
             sys.exit(1)
 
-                # Start the daemon
+# Start the daemon
 
         self.daemonize()
         self.run()
@@ -124,7 +124,7 @@ class daemon:
             sys.stderr.write(message.format(self.pidfile))
             return   # not an error in a restart
 
-                # Try killing the daemon process
+# Try killing the daemon process
 
         try:
             while 1:
@@ -136,7 +136,7 @@ class daemon:
                 if os.path.exists(self.pidfile):
                     os.remove(self.pidfile)
 
-                                # Just in case... :D
+# Just in case... :D
 
                 if os.path.isfile('/tmp/CallAlert.pid'):
                     os.remove('/tmp/CallAlert.pid')

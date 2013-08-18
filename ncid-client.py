@@ -43,7 +43,7 @@ class Notify(object):
 
     def showNotification(self, notification, zeit):
 
-    # ...#.....import time
+# import time
 
         pynotify.init('CallAlertWindow')
         msg = pynotify.Notification('CallAlert', notification,
@@ -102,7 +102,7 @@ class NcidClientFactory(ClientFactory):
 
 class MyDaemon(daemon):
 
-    #   Overrides run function in daemon
+#   Overrides run function in daemon
 
     def run(self):
         print '[+] Initializing...'
@@ -112,7 +112,7 @@ class MyDaemon(daemon):
         reactor.connectTCP(SERVER_IP, SERVER_PORT, factory)
         print '[+] Started!'
 
-                    #       notification.showNotification("Started",500) Takes too long to close...
+#       notification.showNotification("Started",500) Takes too long to close...
 
         reactor.run()
         print '[+] Stopped!'

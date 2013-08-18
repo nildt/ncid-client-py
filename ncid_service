@@ -2,13 +2,12 @@
 # description: CallAlert
 # Just put this file into /etc/init.d/
 # sudo update-rc.d ncid defaults 98 02
-
-DISPLAY=":0.0"
-export DISPLAY
+# xhost + localhost > /dev/null
+# DISPLAY=":0.0"
+# export DISPLAY
 
 case "$1" in
 'start')
-xhost + localhost > /dev/null
 sudo python /PATH_TO_SCRIPT/ncid-client-py/ncid-client.py start
 ;;
 
